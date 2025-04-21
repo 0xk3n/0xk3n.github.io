@@ -592,3 +592,10 @@ mark{
   text-align: center;
 }
 
+code::-webkit-scrollbar{
+  display: none;
+}
+code {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
