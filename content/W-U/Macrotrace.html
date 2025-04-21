@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Inconsolata&family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/65ad30df58.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="/content/img/Sprite-0001.jpeg">
+<title>home</title>
+</head>
+
+<body>
+<div class="Head">
+<pre style="font-family:'Courier Prime';color:var(--clr-green);text-align:center;font-weight:1000">
+   ___       _    _____       
+  / _ \__  _| | _|___ / _ __  
+ | | | \ \/ / |/ / |_ \| '_ \ 
+ | |_| |>  <|   < ___) | | | |
+  \___//_/\_\_|\_\____/|_| |_|
+                              u/0xk3n's page
+                              </pre>
+<nav>
+   <a href="/index.html">home</a>
+   <a href="/archive.html">archive</a>
+   <a href="/about.html">about</a>
+</nav>
+</div>
+
+<article>
+<!-- lorem ipsum  -->
+<h1 id="Lorem ipsum text" style="font-size: 2.2em;border-bottom: none;padding-bottom: 0em;">
+CTFtime | Macrotrace | UMassCTF
+</h1>
+<p>Posted april 20,2025</p>
+<p>#forensics</p>
+<img src="/content/icon/UmassCTF2025.png" width="300" height="200" loading="lazy">
+<h2>Challenge description</h2>
+<p style="text-align:justified;">A suspicious spreadsheet surfaced from the archive of a defunct Flash game studio. Opening it does... something, but whatever was there is now gone.<br>
+    Your mission: reverse the macro, trace what it did, and recover the flag it tried to destroy.<br>
+    Use 23ab3Y9/]jKl as the password when extracting the password-protected zip archive.<br/></p>
+<p>Files : <a href="/content/file/macrotrace-assets.zip" style="text-decoration: none;">macrotrace-assets.zip</a></p>
+<p style="font-weight: bold;">Flag: UMASS{drop_it_like_its_hot}</p>
+<h3>How to solve</h3>
+<p>For this challenge, we were given a ZIP file containing two files: dropper.xlsm and flash.evtx.
+    I used olevba from <a href="https://github.com/decalage2/oletools" style="text-decoration: none;">oletools</a> to analyze the macro in the dropper.xlsm file
+    and <a href="https://github.com/omerbenamram/evtx" style="text-decoration: none;">evtx_dump</a> to analyze the flash.evtx file</p>
+<p>when run olevba, We have a clear idea of what’s happening.</p>
+<img src="/content/img/Umasctf_ss1.png">
+<p>When Excel is opened, this macro:</p>
+<ul>
+  <li>Executes PowerShell</li>
+  <li>Downloads the file stage1.txt from IP address 34.138.121.94:8000</li>
+  <li>Saves it to TEMP\stage1.txt</li>
+</ul>
+<p>then download file stage1.txt and open : </p>
+<pre>
+  <code>
+    Temporary file removed.
+    Powershell execution details may still be... recoverable. 
+    -- Saved in Unicode
+  </code>
+</pre>
+<p>I continued tracing its execution in the Event Log file (`evtx`).</p>
+<p>I opened the evtx log and found Event ID 4104, which recorded the entire PowerShell script that was executed.<br>
+
+  One of them contained the following string:</p>
+<pre><code>$e = "VU1BU1N7ZHJvcF9pdF9saWtlX2l0c19ob3R9"</code></pre>
+<p>I decoded the base64 string:</p>
+<pre><code>echo 'VU1BU1N7ZHJvcF9pdF9saWtlX2l0c19ob3R9' | base64 -d</code></pre>
+<p>and get the flag.</p>
+
+  <!-- <strong><u>KEYWORDS</u>: </strong>#CTF </p> -->
+<!-- <center class="next-back"><a href="index1.html">Next>></a></center> -->
+</article>
+<footer>
+  <i class="far fa-copyleft"></i> 2025-2026 </p>
+</footer>
+</body>

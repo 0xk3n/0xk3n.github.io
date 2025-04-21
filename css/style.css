@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 :root {
    
 
@@ -39,7 +41,8 @@ html {
 }
 
 body {
-  font-family: 'Inconsolata', monospace;
+  /* font-family: 'Inconsolata', monospace; */
+  font-family: "JetBrains Mono", monospace;
   line-height: 1.25em;
   /*padding-top: 2em;*/
   /*padding-bottom: 2em;*/
@@ -93,7 +96,6 @@ a:active {
 }
 
 ::selection {
-  /* background: deeppink; */
   color: #000;
   background: var(--clr-red);
 }
@@ -241,7 +243,7 @@ samp {
 
 code.sourceCode span.dt { color: cyan; } /* Datatype */
 code.sourceCode span.st { color: yellow; } /* string */
-code.sourceCode span.co { color: #928374; font-style: italic; } [> Comment medium <]
+/* code.sourceCode span.co { color: #928374; font-style: italic; } [> Comment medium <] */
 /*code span.al { color: #fb4934; } [> Alert <]*/
 /*code span.an { color: #928374; font-weight: bold; font-style: italic; } [> Annotation <]*/
 /*code span.at { } [> Attribute <]*/
@@ -268,7 +270,7 @@ code.sourceCode span.co { color: #928374; font-style: italic; } [> Comment mediu
 /*code span.st { color: #83a598; } [> String <]*/
 /*code span.va { } [> Variable <]*/
 /*code span.vs { color: #83a598; } [> VerbatimString <]*/
-/*code span.wa { color: #fb4934; font-weight: bold; } [> Warning <]*/
+/* code span.wa { color: #fb4934; font-weight: bold; } [> Warning <] */
 
 pre {
     word-wrap: break-word;
